@@ -6,7 +6,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //activeCard sätts mha cardnumber. Spärr så man inte kan lägga till två kort med samma kortnummer? 
 
 //Thunk för att hantera fetch av random user
-export const getUser = createAsyncThunk("user/getUser", async ()=> {
+export const getUser = createAsyncThunk("user/getUser", async () => {
   return fetch("https://randomuser.me/api/")
   .then(response => response.json())
 });
@@ -14,7 +14,13 @@ export const getUser = createAsyncThunk("user/getUser", async ()=> {
 const cardSlice = createSlice({
   name: "cardList",
   initialState: {
-    cards: [],
+    cards: [{
+      cardholder: "",
+      cardNumber: "1111111111111111", 
+      validThruMonth: "10",
+      validThruYear: "22",
+      cvc: "111", 
+      vendor: "Visa"}],
     user: null, 
     activeCard: null, 
     status: "idle"
@@ -23,14 +29,14 @@ const cardSlice = createSlice({
     addNewCard: (state, { payload }) => {
       //OM arrayen cards är 3, returnera felmeddelande
       if(state.cards.length >= 3){
-        alert("You can only have 4 cards. Please delete a card before adding a new one.")
+        alert("You can only have 4 cards. Please delete a card before adding a new one.");
       }
       state.cards.push(payload); 
-      console.log("Message from reducer addNewCard: added card")
+      console.log("Message from reducer addNewCard: added card");
     }, 
     deleteCard: (state, { payload }) => {
       state.cards = state.cards.filter((card)=> card.cardNumber !== payload);
-      console.log("Tog bort kort med id: ", payload)
+      console.log("Tog bort kort med id: ", payload);
     }, 
     setActiveCard: (state, {payload}) => {
       state.activeCard = payload;
@@ -38,16 +44,16 @@ const cardSlice = createSlice({
     }
   }, 
   extraReducers: {
-    [getUser.fulfilled]: (state, action)=> {
-      console.log("Message from extraReducer: Got the user", action.payload)
+    [getUser.fulfilled]: (state, action) => {
+      console.log("Message from extraReducer: Got the user", action.payload);
       state.user = action.payload;
-      state.status = "Success!"
+      state.status = "Success!";
     }, 
-    [getUser.pending]: (state, action)=>{
-      state.status= "Loading..."
+    [getUser.pending]: (state, action) => {
+      state.status= "Loading...";
     }, 
-    [getUser.rejected]: (state, action)=>{
-      state.status = "Failed to get user :("
+    [getUser.rejected]: (state, action) => {
+      state.status = "Failed to get user :(";
     }
 }});
 

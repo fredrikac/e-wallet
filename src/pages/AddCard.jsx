@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 //använd komponenten Card för att rendera förhandsvisning av kortet?
 
-//Vad ska hända efter att användaren klickat på Add card? Alert med success och sen tillbaka till start? 
-//Just nu visas "Added card!" hela tiden om det finns kort i cards. inte optimalt. 
+//Vad ska hända efter att användaren klickat på Add card? Alert med success och sen tillbaka till start? Nu händer ingenting. 
+
 
 const AddCard = () => {
   const dispatch = useDispatch();
@@ -28,12 +28,12 @@ const AddCard = () => {
   });
 
   //Lyssna efter change i formuläret
-  const handleChange = (event)=> {
+  const handleChange = (event) => {
     setFormdata({...formdata, [event.target.name]: event.target.value});
   }
 
   //Hantera submit
-  const handleSubmit= (event)=>{
+  const handleSubmit= (event) => {
     event.preventDefault();
 
     //dispatcha action och lägg till objektet formdata som ett nytt card
@@ -90,10 +90,7 @@ const AddCard = () => {
         </select>
         <br />
         <button>ADD CARD</button>
-      </form>   
-
-      {/* {cards && <h2>Added card!</h2>} */}
-      
+      </form>     
     </div>
   )
 }
