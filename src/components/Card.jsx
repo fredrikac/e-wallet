@@ -1,18 +1,24 @@
 //Själva kortet
+import styles from "./Card.module.css"
 
-const Card = ({ cardNumber, validThruMonth, validThruYear, vendor, cvc, cardholder }) => {
+const Card = ({ cardNumber, validThruMonth, validThruYear, vendor,  cvc, cardholder }) => {
 
-  // const { first, last } = user[0].name;
-
+  //beroende på vilken vendor det är så vill jag ha olika färg på korten. Djupdyk i detta sedan.
   return (
-    <div style={{border: "solid 1px black", width: "60vw", height: "50vh"}}>
-       <h4>{cardNumber}</h4>
-      <h5>CARDHOLDER NAME</h5>
-      <h5>{cardholder}</h5> 
-      <h5>VALID THRU</h5>
-      <h5>{validThruMonth}/{validThruYear}</h5>
-      <h5>CVC: {cvc}</h5>
-      <h5>{vendor}</h5> 
+    <div className={styles.card}>
+      <p className={styles.vendor}>{vendor}</p> 
+      <p className={styles.number}>{cardNumber}</p>
+      <span className={styles.midsection}>
+      <div>
+      <p className={styles.heading}>CARDHOLDER</p>
+      <p className={styles.name}>{cardholder}</p> 
+      </div>
+      <div>
+      <p className={styles.heading}>VALID THRU</p>
+      <p>{validThruMonth}/{validThruYear}</p>
+      </div>
+      </span>
+     
     </div>
   )
 }

@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //denna kommer hantera state för både user och cards. 
 
-//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. 
+//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. Även om det kommer upp en alert om att det inte går att lägga till kort så görs det kortet man försökte lägga till som aktivt. Buggggg
+
 //activeCard sätts mha cardnumber. Spärr så man inte kan lägga till två kort med samma kortnummer? 
 
 //Thunk för att hantera fetch av random user
@@ -27,20 +28,23 @@ const cardSlice = createSlice({
   }, 
   reducers: {
     addNewCard: (state, { payload }) => {
-      //OM arrayen cards är 3, returnera felmeddelande
-      if(state.cards.length >= 3){
+      if(state.cards.length >= 4){
         alert("You can only have 4 cards. Please delete a card before adding a new one.");
+      }else{
+        state.cards.push(payload); 
+        alert("Added card!")
+        console.log("Message from reducer addNewCard: added card");
       }
-      state.cards.push(payload); 
-      console.log("Message from reducer addNewCard: added card");
     }, 
     deleteCard: (state, { payload }) => {
       state.cards = state.cards.filter((card)=> card.cardNumber !== payload);
       console.log("Tog bort kort med id: ", payload);
     }, 
     setActiveCard: (state, {payload}) => {
-      state.activeCard = payload;
-      console.log("Message from reducer setActiveCard: activeCard is now cardnumber ", payload);
+      if(state.cards.length <= 4){
+        state.activeCard = payload;
+        console.log("Message from reducer setActiveCard: activeCard is now cardnumber ", payload);
+      }
     }
   }, 
   extraReducers: {

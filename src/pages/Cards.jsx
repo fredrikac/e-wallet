@@ -26,7 +26,7 @@ const Cards = () => {
     }
   }, []);
 
-  //const userCardholder = `${user.results[0].name.first} ${user.results[0].name.last}` //detta får allt att krascha
+  
 
   return (
     <div><h1>E-WALLET</h1>
@@ -35,11 +35,11 @@ const Cards = () => {
     <h3>Status: {status}</h3>
     <h3>Active card: {activeCard}</h3>
 
-   {cards && cards.map((card) => {
-      const { cardholder, vendor, cardNumber, validThruMonth, validThruYear, cvc, id } = card;
+   {cards && cards.map((card, i) => {
+      const { cardholder, vendor, cardNumber, validThruMonth, validThruYear, cvc } = card;
 
       return(
-        <Card key={id} vendor={vendor} validThruMonth={validThruMonth} validThruYear={validThruYear} cardNumber={cardNumber} cvc={cvc} cardholder={cardholder}/>
+        <Card key={i} vendor={vendor} validThruMonth={validThruMonth} validThruYear={validThruYear} cardNumber={cardNumber} cvc={cvc} cardholder={cardholder}/>
       )
     })} 
 

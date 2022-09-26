@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+
+/* Färgskala
+mörkblå: #0e2337
+ljusblå: #0c75af
+mörkgul: #9e8418
+ljusgul: #f0c14f */
+
+
+.card {
+  width: 320px;
+  height: 190px;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 9px 2px rgba(0,0,0,0.58); 
+  box-shadow: 2px 2px 9px 2px rgba(0,0,0,0.58);
+  background-color: #0e2337;
+  color: blanchedalmond;
+  font-family: 'Space Mono', monospace;
+}
+
+.amex {
+  background-color: #0e2337;
+  color: blanchedalmond;
+}
+
+.visa {
+  background-color: #f0c14f;
+  color: #0e2337;
+}
+
+.MasterCard {
+  background-color: #0c75af;
+  color: #0e2337;
+}
+
+.midsection {
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.vendor {
+  display: flex;
+  align-self: flex-end;
+  font-weight: 600;
+}
+
+.number {
+  font-size: large;
+}
+
+.heading{
+  font-size: smaller;
+}
+.name {
+  text-transform: uppercase;
+}
