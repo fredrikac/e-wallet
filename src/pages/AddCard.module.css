@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
 
+
+/* Färgskala
+mörkblå: #0e2337
+ljusblå: #0c75af
+mörkgul: #9e8418
+ljusgul: #f0c14f */
+
 .addPageMain {
   display: flex;
   flex-direction: column;
@@ -26,5 +33,48 @@ form {
 .customSelect{
   display: flex;
   flex-direction: column;
-  height: 3em;
+  margin-top: 2em;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: row;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  border: none;
+  min-inline-size: min-content;
+}
+
+.validthru {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  width: 25%;
+  margin-right: 5px;
+}
+
+.button1 {
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #9e8418;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#0e2337;
+  background-color: #f0c14f;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.button1:hover{
+  color:#f0c14f;
+  background-color:#0e2337;
 }

@@ -4,21 +4,17 @@ import { addNewCard, setActiveCard } from "../components/cardSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
-
 import styles from "./AddCard.module.css";
 
-//använd komponenten Card för att rendera förhandsvisning av kortet?
-//Vad ska hända efter att användaren klickat på Add card? Alert med success och sen tillbaka till start? Nu händer ingenting. 
-
+//Vad ska hända efter att användaren klickat på Add card? Alert med success eller alert med fail. Efter det då? Tillbaka till start?
 
 const AddCard = () => {
   const dispatch = useDispatch();
   const { cards, user } = useSelector((state)=> state.cardList);
-  const fullName = `${user.results[0].name.first} ${user.results[0].name.last}`;
  
   //Hantera formuläret
   const [formdata, setFormdata] = useState({
-    cardholder: fullName,
+    cardholder: user,
     cardNumber: "", 
     validThruMonth: "",
     validThruYear: "",
@@ -54,28 +50,32 @@ const AddCard = () => {
     <main className={styles.addPageMain}>
       <h1>ADD A NEW BANK CARD</h1>
       <p>NEW CARD</p>
-      <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={fullName}/> 
+      <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user}/> 
 
       <form onSubmit={handleSubmit}>
         <label className={styles.label} htmlFor="cardNumber">CARD NUMBER</label>
         <input className={styles.inputfield} type="text" name="cardNumber" id="cardNumber" value={formdata.cardNumber} required pattern="[0-9]{16}" maxLength="16" size="16" onChange={handleChange}/>
         <br />
         <label className={styles.label} htmlFor="cardholder">CARDHOLDER</label>
-        <input className={styles.inputfield} type="text" name="cardholder" id="cardholder" value={fullName} placeholder={fullName} disabled onChange={handleChange}/> 
+        <input className={styles.inputfield} type="text" name="cardholder" id="cardholder" value={user} placeholder={user} disabled onChange={handleChange}/> 
         
         <br />
         <fieldset>
         <legend className={styles.label}>VALID THRU</legend>
-        <label className={styles.label} htmlFor="validThruMonth">MONTH</label>
+        <span className={styles.validthru}>
+        <label className={styles.label} htmlFor="validThruMonth">MM</label>
         <input className={styles.inputfield} type="number" name="validThruMonth" id="validThruMonth" value={formdata.validThruMonth}min="1" max="12" required onChange={handleChange}/>
-        <label className={styles.label} htmlFor="validThruYear">YEAR</label>
+        </span>
+        <span className={styles.validthru}>
+        <label className={styles.label} htmlFor="validThruYear">YY</label>
         <input className={styles.inputfield} type="number" name="validThruYear" id="validThruYear" value={formdata.validThruYear} min="22" max="27" required onChange={handleChange}/>
+        </span>
+        <span className={styles.validthru}>
+        <label className={styles.label} htmlFor="cvc">CVC</label>
+        <input className={`${styles.inputfield} ${styles.cvc}`} type="text" name="cvc" id="cvc" value={formdata.cvc}pattern="[0-9]{3}" required onChange={handleChange}/>
+        </span>
         </fieldset>
 
-        <br />
-        <label className={styles.label} htmlFor="cvc">CVC</label>
-        <input className={styles.inputfield} type="text" name="cvc" id="cvc" value={formdata.cvc}pattern="[0-9]{3}" required onChange={handleChange}/>
-        <br />
         <div className={styles.customSelect}>
         <label className={styles.label} htmlFor="vendor">VENDOR</label>
         <select name="vendor" id="vendor" value={formdata.vendor} required onChange={handleChange}>
@@ -86,7 +86,7 @@ const AddCard = () => {
         </select>
         </div>
         <br />
-        <button>ADD CARD</button>
+        <button className={styles.button1}>ADD CARD</button>
       </form>     
     </main>
   )
