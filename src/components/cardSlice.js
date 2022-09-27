@@ -2,8 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //denna kommer hantera state för både user och cards. 
-//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. Det går inte att lägga till ett femte kort, så det funkar, men då kraschar allt
-//Vad ska jag med initialCard till? Fortsätt med detta
+//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. Det går inte att lägga till ett femte kort, så det funkar, men då kraschar allt - förmodligen för att cards renderas om?
 
 //EXTRA
 //activeCard sätts mha cardnumber. Spärr så man inte kan lägga till två kort med samma kortnummer? 
@@ -16,7 +15,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
   if(result.status === 200){
     return result.data.results[0].name.first.concat(" ", result.data.results[0].name.last);
   } else {
-    //returnera en default-användare kanske?
+    //returnera Jane Doe
   }
 });
 
@@ -31,28 +30,26 @@ const cardSlice = createSlice({
       validThruMonth: "10",
       validThruYear: "22",
       cvc: "111", 
-      vendor: "Visa"}, 
+      vendor: "Visa"
+    }, 
     status: "idle"
   }, 
   reducers: {
     addNewCard: (state, { payload }) => {
       if([...state.cards, state.activeCard].length >= 4){
         alert("You can only have 4 cards. Please delete a card before adding a new one.");
-        return;
-      }
+      return;
+      } else {
         state.cards = [...state.cards, payload];
         alert("Added card!")
         console.log("Message from reducer addNewCard: added card");
+        return;
+      }
     }, 
     deleteCard: (state, { payload }) => {
       state.cards = state.cards.filter((card)=> card.cardNumber !== payload);
       console.log("Message from reducer deleteCard - deleted: ", payload);
-    }, 
-    initialCard: (state) => {
-      if (state.activeCard === null){
-        state.activeCard = state.cards.shift();
-      }
-    },
+     },
     setActiveCard: (state, { payload }) => {
       const thisCard = state.activeCard;
       state.activeCard = state.cards.find(card => card.cardNumber === payload)

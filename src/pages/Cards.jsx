@@ -3,16 +3,13 @@ import Card from '../components/Card';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../components/cardSlice";
-import { useEffect, useState, useRef } from "react";
-import { setActiveCard } from '../components/cardSlice';
+import { useEffect, useRef } from "react";
 import styles from "./AddCard.module.css"
 
 
 //ATT GÖRA
-//Ta bort-knapp - Var, hur? OM kort ej är aktivt, lägg till en liten knapp i övre högra hörnet
-
-//Bugg: när man lägger till ett femte kort så kraschar allt :)
-
+//Ta bort-knapp - ska ej läggas till på activeCard och på preview - lägg till en boolean?
+//Fetchen körs om när sidan uppdateras - är det ok? 
 //Jobba vidare på CSS:en - fixa till olika färg på olika kort-utgivare
 
 //Extra
@@ -33,27 +30,25 @@ const Cards = () => {
       dispatch(getUser());
       shouldFetch.current = false;
     }
-  }, []);
-
-  const clickToActivate = (cardnumber) => {
-    dispatch(setActiveCard(cardnumber))
-  }
+  }, [dispatch, status]);
 
   return (
     <main><h1>E-WALLET</h1>
     <h2>Welcome, {activeCard.cardholder}!</h2>
-    <p>Active card {activeCard.cardNumber}</p>
-    <Card vendor={activeCard.vendor} validThruMonth={activeCard.validThruMonth} validThruYear={activeCard.validThruYear} cardNumber={activeCard.cardNumber} cvc={activeCard.cvc} cardholder={activeCard.cardholder} />
+    <p>Active card</p>
+    <Card vendor={activeCard.vendor} validThruMonth={activeCard.validThruMonth} validThruYear={activeCard.validThruYear} cardNumber={activeCard.cardNumber} cvc={activeCard.cvc} cardholder={activeCard.cardholder} active={activeCard.active} showBtn={false}/>
 
     {cards && cards.map((card, i) => {
       const { cardholder, vendor, cardNumber, validThruMonth, validThruYear, cvc } = card;
 
       return(
-        <Card key={i} vendor={vendor} validThruMonth={validThruMonth} validThruYear={validThruYear} cardNumber={cardNumber} cvc={cvc} cardholder={cardholder} clickToActivate={clickToActivate}/>
+        <Card key={i} vendor={vendor} validThruMonth={validThruMonth} validThruYear={validThruYear} cardNumber={cardNumber} cvc={cvc} cardholder={cardholder} showBtn={true} />
       )
     })} 
 
-    <Link to="/addcard" ><button className={styles.button1}>Add card</button></Link>
+    <Link to="/addcard">
+      <button className={styles.button1} >Add card</button>
+    </Link>
     </main>
   )
 }

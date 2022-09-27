@@ -1,8 +1,8 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { addNewCard, setActiveCard } from "../components/cardSlice";
+import { addNewCard } from "../components/cardSlice";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import styles from "./AddCard.module.css";
 
@@ -11,7 +11,7 @@ import styles from "./AddCard.module.css";
 const AddCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cards, user } = useSelector((state)=> state.cardList);
+  const { user } = useSelector((state)=> state.cardList);
  
   //Hantera formuläret
   const [formdata, setFormdata] = useState({
@@ -34,8 +34,6 @@ const AddCard = () => {
 
     //dispatcha action och lägg till objektet formdata som ett nytt card
     dispatch(addNewCard(formdata))
-    //här läggs nya kortet som aktivt 
-    dispatch(setActiveCard(formdata.cardNumber))
 
     //töm formuläret igen
     setFormdata({    
@@ -46,15 +44,15 @@ const AddCard = () => {
     cvc: "", 
     vendor: ""})
 
-    //tillbaka till start
-    navigate("/cards")
+  //tillbaka till start 
+   navigate("/cards")
   }
 
   return (
     <main>
       <h1>ADD A NEW BANK CARD</h1>
       <p>PREVIEW</p>
-      <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user}/> 
+      <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user} showBtn={false}/> 
 
       <form onSubmit={handleSubmit}>
         <label className={styles.label} htmlFor="cardNumber">CARD NUMBER</label>
@@ -86,11 +84,11 @@ const AddCard = () => {
           <option value="" disabled>Choose vendor...</option>
           <option name="Visa" >Visa</option>
           <option name="MasterCard">MasterCard</option>
-          <option name="American Express" >American Express</option>
+          <option name="Amex">Amex</option>
         </select>
         </div>
         <br />
-        <button className={styles.button1}>ADD CARD</button>
+        <button className={styles.button1} >ADD CARD</button>
       </form>     
     </main>
   )

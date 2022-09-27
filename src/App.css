@@ -9,5 +9,19 @@ main {
 }
 
 
+.Amex {
+  background-color: #0e2337;
+  color: blanchedalmond;
+}
+
+.Visa {
+  background-color: #f0c14f;
+  color: #0e2337;
+}
+.MasterCard {
+  background-color: #0c75af;
+  color: #0e2337;
+}
+
 
 

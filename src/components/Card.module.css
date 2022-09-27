@@ -18,24 +18,10 @@ ljusgul: #f0c14f */
   border-radius: 5px;
   -webkit-box-shadow: 2px 2px 9px 2px rgba(0,0,0,0.58); 
   box-shadow: 2px 2px 9px 2px rgba(0,0,0,0.58);
-  background-color: #0e2337;
-  color: blanchedalmond;
+  /* background-color: #0e2337;
+  color: blanchedalmond; */
   font-family: 'Space Mono', monospace;
-}
-
-.amex {
-  background-color: #0e2337;
-  color: blanchedalmond;
-}
-
-.visa {
-  background-color: #f0c14f;
-  color: #0e2337;
-}
-
-.MasterCard {
-  background-color: #0c75af;
-  color: #0e2337;
+  position: relative;
 }
 
 .midsection {
@@ -61,8 +47,18 @@ ljusgul: #f0c14f */
   text-transform: uppercase;
 }
 
+
+.cardWrap {
+  display: flex;
+  flex-direction: row;
+}
+
 .closeBtn {
-  background-color:none;
+  background:none;
   z-index: 10;
-  position: right top;
+  position: relative;
+  width: 10px;
+  border: none;
+  font-size: x-large;
+  color: #0e2337;
 }
