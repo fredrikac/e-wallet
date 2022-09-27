@@ -2,14 +2,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCard, setActiveCard } from "../components/cardSlice";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import styles from "./AddCard.module.css";
 
-//Vad ska hända efter att användaren klickat på Add card? Alert med success eller alert med fail. Efter det då? Tillbaka till start?
+//Här ska användaren inte kunna klicka på kortet!
 
 const AddCard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cards, user } = useSelector((state)=> state.cardList);
  
   //Hantera formuläret
@@ -33,7 +34,7 @@ const AddCard = () => {
 
     //dispatcha action och lägg till objektet formdata som ett nytt card
     dispatch(addNewCard(formdata))
-    //här läggs nya kortet som aktivt även om det inte läggs till pga för många kort. LÖS DETTA
+    //här läggs nya kortet som aktivt 
     dispatch(setActiveCard(formdata.cardNumber))
 
     //töm formuläret igen
@@ -44,12 +45,15 @@ const AddCard = () => {
     validThruYear: "",
     cvc: "", 
     vendor: ""})
+
+    //tillbaka till start
+    navigate("/cards")
   }
 
   return (
-    <main className={styles.addPageMain}>
+    <main>
       <h1>ADD A NEW BANK CARD</h1>
-      <p>NEW CARD</p>
+      <p>PREVIEW</p>
       <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user}/> 
 
       <form onSubmit={handleSubmit}>

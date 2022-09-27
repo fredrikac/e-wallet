@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //denna kommer hantera state för både user och cards. 
-
 //Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. Det går inte att lägga till ett femte kort, så det funkar, men då kraschar allt
 //Vad ska jag med initialCard till? Fortsätt med detta
 

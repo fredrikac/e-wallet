@@ -1,11 +1,14 @@
 //Själva kortet
 import styles from "./Card.module.css"
 
-const Card = ({ cardNumber, validThruMonth, validThruYear, vendor,  cvc, cardholder }) => {
+const Card = ({ cardNumber, validThruMonth, validThruYear, vendor,  cvc, cardholder, clickToActivate }) => {
 
-  //beroende på vilken vendor det är så vill jag ha olika färg på korten. Djupdyk i detta sedan.
+  //beroende på vilken vendor det är så vill jag ha olika färg på korten. Djupdyk i detta sedan. 
   return (
-    <div className={styles.card}>
+    <div onClick={()=> clickToActivate(cardNumber)}className={styles.card}>
+      <button className={styles.closeBtn} aria-label="Delete card" type="button">
+      <span aria-hidden="true">&times;</span>
+      </button>
       <p className={styles.vendor}>{vendor}</p> 
       <p className={styles.number}>{cardNumber}</p>
       <span className={styles.midsection}>
@@ -18,7 +21,6 @@ const Card = ({ cardNumber, validThruMonth, validThruYear, vendor,  cvc, cardhol
       <p>{validThruMonth}/{validThruYear}</p>
       </div>
       </span>
-     
     </div>
   )
 }

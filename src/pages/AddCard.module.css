@@ -1,18 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
-
 
 /* Färgskala
 mörkblå: #0e2337
 ljusblå: #0c75af
 mörkgul: #9e8418
 ljusgul: #f0c14f */
-
-.addPageMain {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 form {
   width: 320px;
