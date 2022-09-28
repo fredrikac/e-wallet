@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//denna kommer hantera state för både user och cards. 
-//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva. Det går inte att lägga till ett femte kort, så det funkar, men då kraschar allt - förmodligen för att cards renderas om?
+//Arrayen cards kan innehålla 3 items. Det fjärde kortet kommer vara det aktiva.
 
 //EXTRA
-//activeCard sätts mha cardnumber. Spärr så man inte kan lägga till två kort med samma kortnummer? 
+//activeCard sätts mha cardnumber. Spärr så man inte kan lägga till två kort med samma kortnummer?
 //Lägg till default Jane Doe ifall fetchen inte funkar
 
 
@@ -26,7 +25,7 @@ const cardSlice = createSlice({
     user: null, 
     activeCard: {
       cardholder: "",
-      cardNumber: "1111111111111111", 
+      cardNumber: "1111 1111 1111 1111", 
       validThruMonth: "10",
       validThruYear: "22",
       cvc: "111", 

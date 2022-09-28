@@ -1,4 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
+
+/* Färgskala 1
+mörkblå: #0e2337
+ljusblå: #0c75af
+mörkgul: #9e8418
+ljusgul: #f0c14f 
+
+Färgskala 2
+#041C32 - mörkblå
+#04293A - mörk teal
+#064663 - teal - default-kortet
+#ECB365 - ljusgul
+
+Färgskala 3 - det blev denna
+#DDDDDD - ljus
+#222831 - mörkgrå
+#30475E - matt blå
+#F05454 - korall
+*/
 
 
 main {
@@ -8,20 +28,34 @@ main {
   align-items: center;
 }
 
+h1, h2, h3 {
+  color: #222831;
+  font-family:'Roboto Mono', monospace; 
+}
 
-.Amex {
-  background-color: #0e2337;
-  color: blanchedalmond;
+h3 {
+  font-size: x-small;
+  margin-bottom: 0;
+  line-height: 50%;
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+}
+
+.Amex  {
+  background-color: #222831 !important;
+  color: #DDDDDD !important;
 }
 
 .Visa {
-  background-color: #f0c14f;
-  color: #0e2337;
+  background-color:#F05454 !important;
+  color:#ececec !important;
 }
+
 .MasterCard {
-  background-color: #0c75af;
-  color: #0e2337;
+  background-color:#30475E !important;
+  color: #DDDDDD !important;
 }
+
 
 
 

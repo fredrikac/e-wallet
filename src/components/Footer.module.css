@@ -1,0 +1,20 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 30%;
+  color: #222831;
+  background-color: #DDDDDD;
+  font-family:'Roboto Mono', monospace; 
+  font-size: x-small;
+  margin-bottom: 0;
+  margin-top: 5em;
+  padding: 1.5em;
+  height: 8em;
+}
+
+.footerLink {
+  padding-top: 1em;
+  color: #222831;
+}

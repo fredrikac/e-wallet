@@ -1,12 +1,11 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCard } from "../components/cardSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../components/Card";
-import styles from "./AddCard.module.css";
 
-//Här ska användaren inte kunna klicka på kortet!
+import Card from "../components/Card";
+import Footer from "../components/Footer";
+import styles from "./AddCard.module.css";
 
 const AddCard = () => {
   const dispatch = useDispatch();
@@ -49,14 +48,15 @@ const AddCard = () => {
   }
 
   return (
+    <>
     <main>
       <h1>ADD A NEW BANK CARD</h1>
-      <p>PREVIEW</p>
+      <h3>PREVIEW</h3>
       <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user} showBtn={false}/> 
 
       <form onSubmit={handleSubmit}>
         <label className={styles.label} htmlFor="cardNumber">CARD NUMBER</label>
-        <input className={styles.inputfield} type="text" name="cardNumber" id="cardNumber" value={formdata.cardNumber} required pattern="[0-9]{16}" maxLength="16" size="16" onChange={handleChange}/>
+        <input className={styles.inputfield} type="text" name="cardNumber" id="cardNumber" value={formdata.cardNumber} required pattern="[0-9]{16}" placeholder="0000 0000 0000 0000" maxLength="16" size="16" onChange={handleChange}/>
         <br />
         <label className={styles.label} htmlFor="cardholder">CARDHOLDER</label>
         <input className={styles.inputfield} type="text" name="cardholder" id="cardholder" value={user} placeholder={user} disabled onChange={handleChange}/> 
@@ -66,15 +66,15 @@ const AddCard = () => {
         <legend className={styles.label}>VALID THRU</legend>
         <span className={styles.validthru}>
         <label className={styles.label} htmlFor="validThruMonth">MM</label>
-        <input className={styles.inputfield} type="number" name="validThruMonth" id="validThruMonth" value={formdata.validThruMonth}min="1" max="12" required onChange={handleChange}/>
+        <input className={styles.inputfield} type="number" name="validThruMonth" id="validThruMonth" value={formdata.validThruMonth} placeholder="01" min="01" max="12" required onChange={handleChange}/>
         </span>
         <span className={styles.validthru}>
         <label className={styles.label} htmlFor="validThruYear">YY</label>
-        <input className={styles.inputfield} type="number" name="validThruYear" id="validThruYear" value={formdata.validThruYear} min="22" max="27" required onChange={handleChange}/>
+        <input className={styles.inputfield} type="number" name="validThruYear" id="validThruYear" value={formdata.validThruYear} placeholder="23" min="22" max="27" required onChange={handleChange}/>
         </span>
         <span className={styles.validthru}>
         <label className={styles.label} htmlFor="cvc">CVC</label>
-        <input className={`${styles.inputfield} ${styles.cvc}`} type="text" name="cvc" id="cvc" value={formdata.cvc}pattern="[0-9]{3}" required onChange={handleChange}/>
+        <input className={`${styles.inputfield} ${styles.cvc}`} type="text" name="cvc" id="cvc" value={formdata.cvc}pattern="[0-9]{3}" maxLength="3" placeholder="123" required onChange={handleChange}/>
         </span>
         </fieldset>
 
@@ -84,13 +84,15 @@ const AddCard = () => {
           <option value="" disabled>Choose vendor...</option>
           <option name="Visa" >Visa</option>
           <option name="MasterCard">MasterCard</option>
-          <option name="Amex">Amex</option>
+          <option name="American Express">American Express</option>
         </select>
         </div>
         <br />
         <button className={styles.button1} >ADD CARD</button>
       </form>     
     </main>
+    <Footer />
+    </>
   )
 }
 

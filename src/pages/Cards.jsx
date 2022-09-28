@@ -1,21 +1,10 @@
-//DETTA ÄR STARTSIDAN
-import Card from '../components/Card';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../components/cardSlice";
 import { useEffect, useRef } from "react";
+import Card from '../components/Card';
+import Footer from '../components/Footer';
 import styles from "./AddCard.module.css"
-
-
-//ATT GÖRA
-//Ta bort-knapp - ska ej läggas till på activeCard och på preview - lägg till en boolean?
-//Fetchen körs om när sidan uppdateras - är det ok? 
-//Jobba vidare på CSS:en - fixa till olika färg på olika kort-utgivare
-
-//Extra
-//skriv ut kortnumret med mellanrum efter var fjärde siffra. Regex?
-//hitta lite logotyper/ikoner till korten (detta är inte högsta prio)
-
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -33,23 +22,27 @@ const Cards = () => {
   }, [dispatch, status]);
 
   return (
-    <main><h1>E-WALLET</h1>
-    <h2>Welcome, {activeCard.cardholder}!</h2>
-    <p>Active card</p>
-    <Card vendor={activeCard.vendor} validThruMonth={activeCard.validThruMonth} validThruYear={activeCard.validThruYear} cardNumber={activeCard.cardNumber} cvc={activeCard.cvc} cardholder={activeCard.cardholder} active={activeCard.active} showBtn={false}/>
+    <>
+    <main>
+      <h1>E-WALLET</h1>
+      <h2>Welcome, {activeCard.cardholder}!</h2>
+      <h3>ACTIVE CARD</h3>
+      <Card vendor={activeCard.vendor} validThruMonth={activeCard.validThruMonth} validThruYear={activeCard.validThruYear} cardNumber={activeCard.cardNumber} cvc={activeCard.cvc} cardholder={activeCard.cardholder} active={activeCard.active} showBtn={false}/>
 
-    {cards && cards.map((card, i) => {
-      const { cardholder, vendor, cardNumber, validThruMonth, validThruYear, cvc } = card;
+      {cards && cards.map((card, i) => {
+        const { cardholder, vendor, cardNumber, validThruMonth, validThruYear, cvc } = card;
 
-      return(
+        return(
         <Card key={i} vendor={vendor} validThruMonth={validThruMonth} validThruYear={validThruYear} cardNumber={cardNumber} cvc={cvc} cardholder={cardholder} showBtn={true} />
-      )
-    })} 
+      )})
+      } 
 
     <Link to="/addcard">
-      <button className={styles.button1} >Add card</button>
+      <button className={styles.button1} >ADD A NEW CARD</button>
     </Link>
-    </main>
+  </main>
+  <Footer />
+  </>
   )
 }
 
