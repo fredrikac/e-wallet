@@ -22,7 +22,7 @@ const Card = ({ cardNumber, validThruMonth, validThruYear, vendor,  cvc, cardhol
 
   return (
     <div className={styles.cardWrap}>
-    <div onClick={showBtn ? () => clickToActivate(cardNumber) : undefined} className={`${styles.card} ${vendor}`}>
+    <div aria-label="Clickable image of credit card" onClick={showBtn ? () => clickToActivate(cardNumber) : undefined} className={`${styles.card} ${vendor}`}>
 
       <p className={styles.vendor}>{vendor}</p> 
       <span className={styles.chipAndNumber}>

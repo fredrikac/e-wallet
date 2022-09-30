@@ -1,31 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
 
-/* Färgskala 1
-mörkblå: #0e2337
-ljusblå: #0c75af
-mörkgul: #9e8418
-ljusgul: #f0c14f 
-
-Färgskala 2
-#041C32 - mörkblå
-#04293A - mörk teal
-#064663 - teal - default-kortet
-#ECB365 - ljusgul
-
-Färgskala 3 - det blev denna
+/* 
+Färgskala 
 #DDDDDD - ljus
 #222831 - mörkgrå
 #30475E - matt blå
 #F05454 - korall
 */
 
-
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+  text-align: center;
 }
 
 h1, h2, h3 {

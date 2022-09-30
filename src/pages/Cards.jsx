@@ -4,7 +4,8 @@ import { getUser } from "../components/cardSlice";
 import { useEffect, useRef } from "react";
 import Card from '../components/Card';
 import Footer from '../components/Footer';
-import styles from "./AddCard.module.css"
+import Header from "../components/Header";
+import styles from "./AddCard.module.css";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const Cards = () => {
 
   return (
     <>
+    <Header />
     <main>
-      <h1>E-WALLET</h1>
       <h2>Welcome, {activeCard.cardholder}!</h2>
       <h3>ACTIVE CARD</h3>
       <Card vendor={activeCard.vendor} validThruMonth={activeCard.validThruMonth} validThruYear={activeCard.validThruYear} cardNumber={activeCard.cardNumber} cvc={activeCard.cvc} cardholder={activeCard.cardholder} active={activeCard.active} showBtn={false}/>

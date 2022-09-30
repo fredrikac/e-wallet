@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Card from "../components/Card";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import styles from "./AddCard.module.css";
 
 const AddCard = () => {
@@ -49,8 +50,9 @@ const AddCard = () => {
 
   return (
     <>
+    <Header />
     <main>
-      <h1>ADD A NEW BANK CARD</h1>
+      <h2>ADD A NEW BANK CARD</h2>
       <h3>PREVIEW</h3>
       <Card  vendor={formdata.vendor} validThruMonth={formdata.validThruMonth} validThruYear={formdata.validThruYear} cardNumber={formdata.cardNumber} cardholder={user} showBtn={false}/> 
 
